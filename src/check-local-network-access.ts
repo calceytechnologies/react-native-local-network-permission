@@ -9,7 +9,7 @@ const DEFAULT_TIMEOUT_WAITING_FOR_LOCAL_NETWORK_CHECKING = 1;
  * but when the permission was granted, we only can wait for some seconds and assume it is positive result
  */
 export const checkLocalNetworkAccess = (timeoutSeconds?: number) : Promise<boolean> => {
-  if (Platform.OS === 'ios') {
+  if (Platform.OS === 'ios' && RNLocalNetworkPermission) {
     return RNLocalNetworkPermission.check(
       timeoutSeconds ?? DEFAULT_TIMEOUT_WAITING_FOR_LOCAL_NETWORK_CHECKING,
     );
